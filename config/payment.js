@@ -4,16 +4,16 @@ import braintree from 'braintree';
 // PayPal setup
 paypal.configure({
     mode: 'sandbox',
-    client_id: 'YOUR_PAYPAL_CLIENT_ID',
-    client_secret: 'YOUR_PAYPAL_CLIENT_SECRET'
+    client_id: process.env.PAYPAL_CLIENT_ID,
+    client_secret: process.env.PAYPAL_CLIENT_SECRET,
 });
 
 // Braintree Gateway setup
 const gateway = new braintree.BraintreeGateway({
     environment: braintree.Environment.Sandbox,
-    merchantId: 'YOUR_MERCHANT_ID',
-    publicKey: 'YOUR_PUBLIC_KEY',
-    privateKey: 'YOUR_PRIVATE_KEY'
+    merchantId: process.env.BRIANTREE_MERCHANT_ID,
+    publicKey: process.env.BRIANTREE_PUBLIC_KEY,
+    privateKey: process.env.BRIANTREE_PRIVATE_KEY
 });
 
 export { paypal, gateway };

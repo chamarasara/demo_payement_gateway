@@ -23,7 +23,7 @@ export const validatePayment = [
 
 
 export const processPayment = async (req, res) => {
-    // Validate request
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ success: false, errors: errors.array() });
@@ -90,14 +90,14 @@ export const processPayment = async (req, res) => {
                     customerName,
                     amount,
                     currency,
-                    paymentMethod: 'Braintree',
+                    paymentMethod: method,
                     paymentStatus: result.transaction.status,
                     response: result.transaction,
                 });
-
-                return res.json({ success: true, message: 'Payment processed successfully', order: newOrder });
+            
+                res.redirect('http://localhost:3000/api/orders/success'); 
             } else {
-                return res.status(400).json({ success: false, message: result.message });
+                res.redirect('http://localhost:3000/api/orders/failure'); 
             }
         } else {
             return res.status(400).json({ success: false, message: 'Invalid payment method' });
