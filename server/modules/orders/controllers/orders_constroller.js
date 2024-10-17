@@ -114,55 +114,59 @@ export const getWelcomeMessage = (req, res) => {
 
 export const getPaymentForm = (req, res) => {
     const htmlForm = `
-        <form action="/api/orders/pay" method="POST">
-            <h3>Payment Information</h3>
-            <div>
-                <label for="method">Payment Method</label>
-                <select name="method" required>
-                    <option value="paypal">PayPal</option>
-                    <option value="braintree">Braintree</option>
-                </select>
-            </div>
-            <div>
-                <label for="amount">Amount</label>
-                <input type="text" name="amount" required />
-            </div>
-            <div>
-                <label for="currency">Currency</label>
-                <select name="currency" required>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="THB">THB</option>
-                    <option value="HKD">HKD</option>
-                    <option value="SGD">SGD</option>
-                    <option value="AUD">AUD</option>
-                </select>
-            </div>
-            <div>
-                <label for="description">Description</label>
-                <input type="text" name="description" />
-            </div>
-            <div>
-                <label for="customerName">Customer Name</label>
-                <input type="text" name="customerName" required />
-            </div>
-            <div>
-                <label for="paymentMethodNonce">Credit Card Number (for Braintree)</label>
-                <input type="text" name="paymentMethodNonce" placeholder="Card number" required />
-            </div>
-            <div>
-                <label for="expirationDate">Expiration Date (MM/YY)</label>
-                <input type="text" name="expirationDate" placeholder="MM/YY" required />
-            </div>
-            <div>
-                <label for="csv">CSV (Card Security Code)</label>
-                <input type="text" name="csv" placeholder="CSV" required />
-            </div>
-            <button type="submit">Submit Payment</button>
-        </form>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <div class="container mt-5">
+            <form action="/api/orders/pay" method="POST" class="p-4 border rounded">
+                <h3 class="mb-4">Payment Information</h3>
+                <div class="form-group">
+                    <label for="method">Payment Method</label>
+                    <select name="method" class="form-control" required>
+                        <option value="paypal">PayPal</option>
+                        <option value="braintree">Braintree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="text" name="amount" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="currency">Currency</label>
+                    <select name="currency" class="form-control" required>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="THB">THB</option>
+                        <option value="HKD">HKD</option>
+                        <option value="SGD">SGD</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="customerName">Customer Name</label>
+                    <input type="text" name="customerName" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethodNonce">Credit Card Number (for Braintree)</label>
+                    <input type="text" name="paymentMethodNonce" class="form-control" placeholder="Card number" required />
+                </div>
+                <div class="form-group">
+                    <label for="expirationDate">Expiration Date (MM/YY)</label>
+                    <input type="text" name="expirationDate" class="form-control" placeholder="MM/YY" required />
+                </div>
+                <div class="form-group">
+                    <label for="csv">CSV (Card Security Code)</label>
+                    <input type="text" name="csv" class="form-control" placeholder="CSV" required />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit Payment</button>
+            </form>
+        </div>
     `;
     res.send(htmlForm);
 };
+
 
 export const paymentSuccess = (req, res) => {
     res.send(`
